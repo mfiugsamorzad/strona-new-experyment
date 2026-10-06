@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RSS MFI UG – Rada Samorządu Studentów Wydziału Matematyki, Fizyki i Informatyki</title>
+  <meta name="description" content="Rada Samorządu Studentów Wydziału Matematyki, Fizyki i Informatyki Uniwersytetu Gdańskiego – wydarzenia, ogłoszenia, pomoc dla studentów.">
+  <meta name="theme-color" content="#0041d2">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230041d2'/%3E%3Ctext x='32' y='41' font-family='Arial' font-size='22' font-weight='700' fill='white' text-anchor='middle'%3ERSS%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styl.css">
+</head>
+<body>
+  <a class="przeskocz" href="#tresc">Przejdź do treści</a>
+
+  <header class="naglowek">
+    <div class="kontener naglowek__wnetrze">
+      <a class="logo" href="#start" aria-label="RSS MFI UG – strona główna">
+        <span class="logo__znak" aria-hidden="true">RSS</span>
+        <span class="logo__tekst">
+          <span class="logo__nazwa">RSS MFI UG</span>
+          <span class="logo__opis">Rada Samorządu Studentów Wydziału Matematyki, Fizyki i Informatyki</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <nav class="zakladki" aria-label="Zakładki strony">
+    <ul class="zakladki__lista">
+      <li><a class="zakladka" href="#start">Start</a></li>
+      <li><a class="zakladka" href="#wydarzenia">Wydarzenia</a></li>
+      <li><a class="zakladka" href="#ogloszenia">Ogłoszenia</a></li>
+      <li><a class="zakladka" href="#o-nas">O nas</a></li>
+      <li><a class="zakladka" href="#dla-studentow">Dla studentów</a></li>
+      <li><a class="zakladka" href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <main id="tresc" tabindex="-1">
+    <div class="kontener">
+
+      <!-- ================= START ================= -->
+      <section class="panel" id="start" aria-labelledby="start-tytul">
+        <div class="baner">
+          <h1 id="start-tytul">Cześć! Jesteśmy samorządem studentów MFI&nbsp;UG</h1>
+          <p>Reprezentujemy studentów matematyki, fizyki, informatyki i pozostałych kierunków naszego wydziału. Organizujemy wydarzenia, pomagamy w sprawach studenckich i dbamy o Twój głos na wydziale.</p>
+          <div class="baner__przyciski">
+            <a class="przycisk przycisk--jasny" href="#wydarzenia">Zobacz wydarzenia</a>
+            <a class="przycisk przycisk--obrys" href="#kontakt">Napisz do nas</a>
+          </div>
+        </div>
+
+        <div class="sekcja-start">
+          <div class="sekcja-start__naglowek">
+            <h2>Najbliższe wydarzenia</h2>
+            <a href="#wydarzenia">Wszystkie wydarzenia →</a>
+          </div>
+          <div id="start-wydarzenia" class="lista-wydarzen"></div>
+        </div>
+
+        <div class="sekcja-start">
+          <div class="sekcja-start__naglowek">
+            <h2>Ostatnie ogłoszenia</h2>
+            <a href="#ogloszenia">Wszystkie ogłoszenia →</a>
+          </div>
+          <div id="start-ogloszenia" class="siatka siatka--2"></div>
+        </div>
+      </section>
+
+      <!-- ================= WYDARZENIA ================= -->
+      <section class="panel" id="wydarzenia" aria-labelledby="wydarzenia-tytul">
+        <div class="panel__naglowek">
+          <div>
+            <h2 id="wydarzenia-tytul">Wydarzenia</h2>
+            <p>Integracje, wykłady, turnieje i spotkania na naszym wydziale.</p>
+          </div>
+        </div>
+
+        <div class="filtry">
+          <div class="przelacznik" role="group" aria-label="Pokaż wydarzenia">
+            <button type="button" data-czas="nadchodzace" aria-pressed="true">Nadchodzące</button>
+            <button type="button" data-czas="minione" aria-pressed="false">Minione</button>
+          </div>
+          <div class="chipy" id="filtr-kategorii" role="group" aria-label="Kategoria"></div>
+          <label class="sr-only" for="szukaj-wydarzen">Szukaj wydarzenia</label>
+          <input class="szukaj" id="szukaj-wydarzen" type="search" placeholder="Szukaj wydarzenia…">
+        </div>
+
+        <p class="sr-only" id="liczba-wydarzen" aria-live="polite"></p>
+        <div id="lista-wydarzen" class="lista-wydarzen"></div>
+      </section>
+
+      <!-- ================= OGŁOSZENIA ================= -->
+      <section class="panel" id="ogloszenia" aria-labelledby="ogloszenia-tytul">
+        <div class="panel__naglowek">
+          <div>
+            <h2 id="ogloszenia-tytul">Ogłoszenia</h2>
+            <p>Bieżące komunikaty samorządu.</p>
+          </div>
+        </div>
+        <div id="lista-ogloszen" class="siatka"></div>
+      </section>
+
+      <!-- ================= O NAS ================= -->
+      <section class="panel" id="o-nas" aria-labelledby="onas-tytul">
+        <h2 id="onas-tytul">O nas</h2>
+        <div class="siatka siatka--2" style="margin-bottom:2rem">
+          <div class="karta">
+            <h3>Kim jesteśmy?</h3>
+            <p>Rada Samorządu Studentów Wydziału Matematyki, Fizyki i Informatyki to organ Samorządu Studentów Uniwersytetu Gdańskiego, który reprezentuje wszystkich studentów naszego wydziału.</p>
+            <p>Działamy społecznie – jesteśmy studentami, tak jak Ty.</p>
+          </div>
+          <div class="karta">
+            <h3>Czym się zajmujemy?</h3>
+            <ul>
+              <li>reprezentujemy studentów przed władzami wydziału,</li>
+              <li>opiniujemy programy studiów i regulaminy,</li>
+              <li>organizujemy wydarzenia integracyjne i naukowe,</li>
+              <li>pomagamy w sprawach stypendialnych i dydaktycznych.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Skład Rady</h2>
+        <div id="lista-zespolu" class="siatka siatka--3"></div>
+      </section>
+
+      <!-- ================= DLA STUDENTÓW ================= -->
+      <section class="panel" id="dla-studentow" aria-labelledby="dla-tytul">
+        <h2 id="dla-tytul">Dla studentów</h2>
+
+        <div class="siatka siatka--2" style="margin-bottom:2rem">
+          <div class="karta">
+            <h3>Przydatne linki</h3>
+            <ul class="lista-linkow">
+              <li><a href="https://ug.edu.pl" rel="noopener">Uniwersytet Gdański</a></li>
+              <li><a href="https://mfi.ug.edu.pl" rel="noopener">Wydział Matematyki, Fizyki i Informatyki</a></li>
+              <li><a href="https://ug.edu.pl/studenci" rel="noopener">Strefa studenta UG</a></li>
+              <li><a href="https://portal.ug.edu.pl" rel="noopener">Portal Studenta</a></li>
+            </ul>
+          </div>
+          <div class="karta">
+            <h3>Dokumenty</h3>
+            <ul class="lista-linkow">
+              <li><a href="#" rel="noopener">Regulamin studiów UG</a></li>
+              <li><a href="#" rel="noopener">Regulamin świadczeń dla studentów</a></li>
+              <li><a href="#" rel="noopener">Regulamin Samorządu Studentów UG</a></li>
+              <li><a href="#" rel="noopener">Wzory podań</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Najczęstsze pytania</h2>
+        <details>
+          <summary>Mam problem z prowadzącym zajęcia – co mogę zrobić?</summary>
+          <p>Napisz do nas lub przyjdź na dyżur. Pomożemy ocenić sytuację, a w razie potrzeby porozmawiamy z prowadzącym lub władzami wydziału. Zachowujemy poufność.</p>
+        </details>
+        <details>
+          <summary>Jak ubiegać się o stypendium?</summary>
+          <p>Wnioski składa się elektronicznie przez Portal Studenta. Terminy publikujemy w zakładce „Ogłoszenia”. Na dyżurach pomożemy wypełnić wniosek.</p>
+        </details>
+        <details>
+          <summary>Jak dołączyć do samorządu?</summary>
+          <p>Przyjdź na otwarte zebranie (terminy w zakładce „Wydarzenia”) albo napisz do nas. Każdy student MFI może działać w samorządzie.</p>
+        </details>
+        <details>
+          <summary>Chcę zorganizować wydarzenie – czy pomożecie?</summary>
+          <p>Jasne! Napisz do nas z krótkim opisem pomysłu, a pomożemy z salą, promocją i formalnościami.</p>
+        </details>
+      </section>
+
+      <!-- ================= KONTAKT ================= -->
+      <section class="panel" id="kontakt" aria-labelledby="kontakt-tytul">
+        <h2 id="kontakt-tytul">Kontakt</h2>
+        <div class="siatka siatka--3">
+          <div class="karta">
+            <h3>E-mail</h3>
+            <p><a href="mailto:rss.mfi@ug.edu.pl">rss.mfi@ug.edu.pl</a><br><small>(adres do potwierdzenia)</small></p>
+          </div>
+          <div class="karta">
+            <h3>Adres</h3>
+            <p>Wydział Matematyki, Fizyki i Informatyki UG<br>ul. Wita Stwosza 57<br>80-308 Gdańsk<br>pokój: <em>do uzupełnienia</em></p>
+          </div>
+          <div class="karta">
+            <h3>Dyżury</h3>
+            <p>poniedziałek 12:00–14:00<br>czwartek 10:00–12:00<br><small>(przykładowe godziny)</small></p>
+          </div>
+          <div class="karta">
+            <h3>Media społecznościowe</h3>
+            <ul class="lista-linkow">
+              <li><a href="#" rel="noopener">Facebook</a></li>
+              <li><a href="#" rel="noopener">Instagram</a></li>
+              <li><a href="#" rel="noopener">Discord</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="stopka">
+    <div class="kontener">
+      <div class="stopka__siatka">
+        <div>
+          <h2>RSS MFI UG</h2>
+          <p>Rada Samorządu Studentów Wydziału Matematyki, Fizyki i Informatyki Uniwersytetu Gdańskiego</p>
+        </div>
+        <div>
+          <h2>Adres</h2>
+          <p>ul. Wita Stwosza 57<br>80-308 Gdańsk</p>
+        </div>
+        <div>
+          <h2>Na skróty</h2>
+          <p><a href="#wydarzenia">Wydarzenia</a></p>
+          <p><a href="#kontakt">Kontakt</a></p>
+          <p><a href="dodaj.html">Dodaj wydarzenie (dla członków RSS)</a></p>
+        </div>
+      </div>
+      <div class="stopka__dol">
+        <span>© <span id="rok">2026</span> RSS MFI UG</span>
+        <a href="https://ug.edu.pl" rel="noopener">Uniwersytet Gdański</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dane (pliki do edycji w folderze „dane”) -->
+  <script src="dane/wydarzenia.js"></script>
+  <script src="dane/ogloszenia.js"></script>
+  <script src="dane/zespol.js"></script>
+  <!-- Logika strony (nie trzeba edytować) -->
+  <script src="js/strona.js"></script>
+</body>
+</html>

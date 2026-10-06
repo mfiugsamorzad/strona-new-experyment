@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dodaj wydarzenie – RSS MFI UG</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0041d2">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230041d2'/%3E%3Ctext x='32' y='41' font-family='Arial' font-size='22' font-weight='700' fill='white' text-anchor='middle'%3ERSS%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styl.css">
+</head>
+<body>
+  <a class="przeskocz" href="#tresc">Przejdź do treści</a>
+
+  <header class="naglowek">
+    <div class="kontener naglowek__wnetrze">
+      <a class="logo" href="index.html">
+        <span class="logo__znak" aria-hidden="true">RSS</span>
+        <span class="logo__tekst">
+          <span class="logo__nazwa">RSS MFI UG</span>
+          <span class="logo__opis">Panel dodawania wydarzeń</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <main id="tresc" tabindex="-1">
+    <div class="kontener">
+      <p><a href="index.html">← Wróć na stronę główną</a></p>
+      <h1 style="margin-top:0">Dodaj wydarzenie</h1>
+      <p>Wypełnij formularz – obok pojawi się gotowy fragment do wklejenia. Nie musisz znać się na programowaniu.</p>
+
+      <div class="siatka siatka--2" style="align-items:start">
+        <form class="karta formularz" id="formularz" novalidate>
+          <div class="pole">
+            <label for="f-tytul">Tytuł wydarzenia <span class="wymagane">*</span></label>
+            <input id="f-tytul" required placeholder="np. Turniej planszówek">
+          </div>
+          <div class="pola-obok">
+            <div class="pole">
+              <label for="f-data">Data <span class="wymagane">*</span></label>
+              <input id="f-data" type="date" required>
+            </div>
+            <div class="pole">
+              <label for="f-godzina">Godzina</label>
+              <input id="f-godzina" type="time">
+            </div>
+          </div>
+          <div class="pole">
+            <label for="f-miejsce">Miejsce</label>
+            <input id="f-miejsce" placeholder="np. Sala 107, Wydział MFI">
+          </div>
+          <div class="pole">
+            <label for="f-kategoria">Kategoria</label>
+            <select id="f-kategoria">
+              <option value="integracja">Integracja</option>
+              <option value="nauka">Nauka</option>
+              <option value="kultura">Kultura</option>
+              <option value="sport">Sport</option>
+              <option value="spotkanie">Spotkanie</option>
+              <option value="inne">Inne</option>
+            </select>
+          </div>
+          <div class="pole">
+            <label for="f-opis">Opis</label>
+            <textarea id="f-opis" placeholder="Krótko: co, dla kogo, co zabrać…"></textarea>
+            <small>Nowy akapit = pusta linia (dwa razy Enter).</small>
+          </div>
+          <div class="pole">
+            <label for="f-link">Link (opcjonalnie)</label>
+            <input id="f-link" type="url" placeholder="https://facebook.com/events/…">
+            <small>Np. wydarzenie na Facebooku albo formularz zapisów.</small>
+          </div>
+          <div class="pole">
+            <label for="f-obrazek">Plakat (opcjonalnie)</label>
+            <input id="f-obrazek" placeholder="obrazki/plakat.jpg">
+            <small>Nazwa pliku wrzuconego do folderu <code>obrazki</code>, np. <code>obrazki/wigilia.jpg</code>.</small>
+          </div>
+        </form>
+
+        <div>
+          <div class="karta" style="margin-bottom:1.25rem">
+            <h2 style="font-size:1.2rem">Gotowy fragment</h2>
+            <p id="podpowiedz" style="color:var(--tekst-drugi);margin-top:0">Uzupełnij tytuł i datę.</p>
+            <pre class="kod" id="wynik" aria-live="polite"></pre>
+            <p style="margin-bottom:0;margin-top:1rem">
+              <button type="button" class="przycisk" id="kopiuj" disabled>Kopiuj fragment</button>
+              <span id="skopiowano" role="status" style="margin-left:.5rem;color:var(--sukces);font-weight:600"></span>
+            </p>
+          </div>
+
+          <div class="karta">
+            <h2 style="font-size:1.2rem">Jak to wkleić? (przez GitHub, w przeglądarce)</h2>
+            <ol class="kroki">
+              <li>Kliknij <strong>Kopiuj fragment</strong> powyżej.</li>
+              <li>Otwórz plik <a id="link-edycji" href="https://github.com/mfiugsamorzad/strona-new-experyment/edit/main/dane/wydarzenia.js" target="_blank" rel="noopener">dane/wydarzenia.js</a> do edycji (ikonka ołówka ✏️ na GitHubie).</li>
+              <li>Znajdź linię <code>// ↓↓↓ NOWE WYDARZENIA WKLEJAJ TUTAJ ↓↓↓</code>, kliknij na końcu tej linii, naciśnij Enter i wklej (Ctrl+V).</li>
+              <li>Kliknij zielony przycisk <strong>Commit changes</strong>, wpisz np. „Dodaję turniej planszówek” i zatwierdź.</li>
+              <li>Po 1–2 minutach wydarzenie pojawi się na stronie. Gotowe! 🎉</li>
+            </ol>
+            <p style="margin-bottom:0"><small>Coś nie działa? Na stronie pojawi się czerwony komunikat – najczęściej brakuje przecinka po <code>}</code>. Zawsze można cofnąć zmianę w historii pliku na GitHubie.</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+  (function () {
+    "use strict";
+    var pola = ["tytul", "data", "godzina", "miejsce", "kategoria", "opis", "link", "obrazek"];
+    var wynik = document.getElementById("wynik");
+    var kopiuj = document.getElementById("kopiuj");
+    var podpowiedz = document.getElementById("podpowiedz");
+
+    function wartosc(n) { return document.getElementById("f-" + n).value.trim(); }
+
+    // JSON.stringify bezpiecznie zamienia cudzysłowy i nowe linie na poprawny zapis.
+    function t(s) { return JSON.stringify(s); }
+
+    function generuj() {
+      var v = {};
+      pola.forEach(function (n) { v[n] = wartosc(n); });
+      var data = "";
+      if (v.data) { var p = v.data.split("-"); data = p[2] + "." + p[1] + "." + p[0]; }
+
+      var kod =
+        "  {\n" +
+        "    tytul:     " + t(v.tytul) + ",\n" +
+        "    data:      " + t(data) + ",\n" +
+        "    godzina:   " + t(v.godzina) + ",\n" +
+        "    miejsce:   " + t(v.miejsce) + ",\n" +
+        "    kategoria: " + t(v.kategoria) + ",\n" +
+        "    opis:      " + t(document.getElementById("f-opis").value.replace(/\r/g, "").trim()) + ",\n" +
+        "    link:      " + t(v.link) + ",\n" +
+        "    obrazek:   " + t(v.obrazek) + ",\n" +
+        "  },\n";
+
+      var gotowe = v.tytul && data;
+      wynik.textContent = kod;
+      kopiuj.disabled = !gotowe;
+      podpowiedz.textContent = gotowe ? "Wszystko gotowe – skopiuj i wklej według instrukcji poniżej." : "Uzupełnij tytuł i datę.";
+      return kod;
+    }
+
+    document.getElementById("formularz").addEventListener("input", generuj);
+    document.getElementById("formularz").addEventListener("submit", function (e) { e.preventDefault(); });
+
+    kopiuj.addEventListener("click", function () {
+      var tekst = "\n" + generuj();
+      var info = document.getElementById("skopiowano");
+      function ok() { info.textContent = "Skopiowano ✓"; setTimeout(function () { info.textContent = ""; }, 2500); }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(tekst).then(ok, zapasowe);
+      } else zapasowe();
+      function zapasowe() {
+        var ta = document.createElement("textarea");
+        ta.value = tekst; document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); ok(); } catch (e) { info.textContent = "Zaznacz tekst ręcznie i skopiuj (Ctrl+C)."; }
+        ta.remove();
+      }
+    });
+
+    generuj();
+  })();
+  </script>
+</body>
+</html>

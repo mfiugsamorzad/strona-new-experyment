@@ -1,0 +1,344 @@
+/* =========================================================
+   RSS MFI UG – arkusz stylów
+   Kolor wiodący: Błękit Uniwersytetu Gdańskiego #0041D2
+   (księga znaku UG: identyfikacja.ug.edu.pl)
+   ========================================================= */
+
+:root {
+  --ug-blekit: #0041d2;        /* Błękit UG – kolor wiodący */
+  --ug-blekit-ciemny: #00309c; /* hover / aktywne */
+  --ug-blekit-jasny: #e8eefc;  /* tła wyróżnień */
+  --tekst: #14181f;
+  --tekst-drugi: #4a5263;
+  --tlo: #ffffff;
+  --tlo-drugie: #f4f6fa;
+  --ramka: #d9dee8;
+  --sukces: #0a7a3d;
+  --ostrzezenie: #9a5b00;
+  --blad: #b3261e;
+
+  --promien: 10px;
+  --cien: 0 1px 2px rgba(20, 24, 31, .06), 0 4px 16px rgba(20, 24, 31, .06);
+  --szerokosc: 1120px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--tekst);
+  background: var(--tlo-drugie);
+}
+
+img { max-width: 100%; height: auto; }
+
+a { color: var(--ug-blekit); text-underline-offset: 2px; }
+a:hover { color: var(--ug-blekit-ciemny); }
+
+:focus-visible {
+  outline: 3px solid var(--ug-blekit);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.przeskocz {
+  position: absolute; left: 1rem; top: -100px; z-index: 100;
+  background: var(--ug-blekit); color: #fff; padding: .6rem 1rem; border-radius: var(--promien);
+}
+.przeskocz:focus { top: 1rem; color: #fff; }
+
+.kontener { max-width: var(--szerokosc); margin: 0 auto; padding: 0 1rem; }
+
+/* ---------- Nagłówek ---------- */
+.naglowek {
+  background: var(--ug-blekit);
+  color: #fff;
+}
+.naglowek__wnetrze {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.1rem 1rem;
+}
+.logo {
+  display: flex; align-items: center; gap: .85rem;
+  color: #fff; text-decoration: none;
+}
+.logo:hover { color: #fff; }
+.logo__znak {
+  flex: none;
+  width: 52px; height: 52px; border-radius: 12px;
+  background: #fff; color: var(--ug-blekit);
+  display: grid; place-items: center;
+  font-weight: 800; font-size: 1.05rem; letter-spacing: .02em;
+}
+.logo__tekst { display: flex; flex-direction: column; line-height: 1.25; }
+.logo__nazwa { font-weight: 700; font-size: 1.15rem; }
+.logo__opis { font-size: .85rem; opacity: .9; }
+
+/* ---------- Zakładki ---------- */
+.zakladki {
+  background: #fff;
+  border-bottom: 1px solid var(--ramka);
+  position: sticky; top: 0; z-index: 50;
+}
+.zakladki__lista {
+  list-style: none; margin: 0 auto; padding: 0 1rem;
+  max-width: var(--szerokosc);
+  display: flex; gap: .25rem;
+  overflow-x: auto; scrollbar-width: none;
+}
+.zakladki__lista::-webkit-scrollbar { display: none; }
+.zakladka {
+  display: block; white-space: nowrap;
+  padding: .95rem 1rem .85rem;
+  color: var(--tekst-drugi); text-decoration: none; font-weight: 600;
+  border-bottom: 3px solid transparent;
+}
+.zakladka:hover { color: var(--ug-blekit); }
+.zakladka[aria-current="page"] {
+  color: var(--ug-blekit);
+  border-bottom-color: var(--ug-blekit);
+}
+
+/* ---------- Sekcje ---------- */
+main { padding: 2rem 0 3rem; }
+.panel[hidden] { display: none; }
+.panel > h2:first-child, .panel__naglowek h2 { margin-top: 0; }
+
+h1, h2, h3 { line-height: 1.25; }
+h2 { font-size: 1.6rem; margin: 0 0 1rem; }
+h3 { font-size: 1.15rem; margin: 0 0 .4rem; }
+
+.panel__naglowek {
+  display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between;
+  gap: 1rem; margin-bottom: 1.25rem;
+}
+.panel__naglowek p { margin: .25rem 0 0; color: var(--tekst-drugi); }
+
+.karta {
+  background: var(--tlo);
+  border: 1px solid var(--ramka);
+  border-radius: var(--promien);
+  box-shadow: var(--cien);
+  padding: 1.25rem 1.4rem;
+}
+
+/* Baner powitalny */
+.baner {
+  background: linear-gradient(135deg, var(--ug-blekit) 0%, #0a2f8f 100%);
+  color: #fff;
+  border-radius: calc(var(--promien) * 1.5);
+  padding: 2.25rem 2rem;
+  margin-bottom: 2rem;
+}
+.baner h1 { margin: 0 0 .5rem; font-size: clamp(1.6rem, 3.5vw, 2.3rem); }
+.baner p { margin: 0 0 1.25rem; max-width: 60ch; opacity: .95; }
+.baner__przyciski { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+.przycisk {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .65rem 1.1rem; border-radius: 999px;
+  font: inherit; font-weight: 600; font-size: .95rem;
+  text-decoration: none; cursor: pointer;
+  border: 2px solid var(--ug-blekit);
+  background: var(--ug-blekit); color: #fff;
+}
+.przycisk:hover { background: var(--ug-blekit-ciemny); border-color: var(--ug-blekit-ciemny); color: #fff; }
+.przycisk--jasny { background: #fff; color: var(--ug-blekit); border-color: #fff; }
+.przycisk--jasny:hover { background: var(--ug-blekit-jasny); color: var(--ug-blekit-ciemny); border-color: var(--ug-blekit-jasny); }
+.przycisk--obrys { background: transparent; color: var(--ug-blekit); }
+.przycisk--obrys:hover { background: var(--ug-blekit-jasny); color: var(--ug-blekit-ciemny); }
+.baner .przycisk--obrys { color: #fff; border-color: #fff; }
+.baner .przycisk--obrys:hover { background: rgba(255,255,255,.12); color: #fff; }
+.przycisk--maly { padding: .4rem .8rem; font-size: .875rem; }
+
+/* Siatki */
+.siatka { display: grid; gap: 1.25rem; }
+.siatka--2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.siatka--3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+.sekcja-start { margin-bottom: 2.25rem; }
+.sekcja-start__naglowek {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  margin-bottom: 1rem;
+}
+.sekcja-start__naglowek h2 { margin: 0; font-size: 1.35rem; }
+
+/* ---------- Wydarzenia ---------- */
+.filtry {
+  display: flex; flex-wrap: wrap; gap: .75rem; align-items: center;
+  margin-bottom: 1.25rem;
+}
+.przelacznik {
+  display: inline-flex; background: #fff; border: 1px solid var(--ramka);
+  border-radius: 999px; padding: 3px;
+}
+.przelacznik button {
+  font: inherit; font-size: .9rem; font-weight: 600;
+  border: 0; background: transparent; color: var(--tekst-drugi);
+  padding: .45rem .95rem; border-radius: 999px; cursor: pointer;
+}
+.przelacznik button[aria-pressed="true"] { background: var(--ug-blekit); color: #fff; }
+
+.chipy { display: flex; flex-wrap: wrap; gap: .4rem; }
+.chip {
+  font: inherit; font-size: .85rem; font-weight: 600;
+  border: 1px solid var(--ramka); background: #fff; color: var(--tekst-drugi);
+  padding: .35rem .8rem; border-radius: 999px; cursor: pointer;
+}
+.chip[aria-pressed="true"] { background: var(--ug-blekit-jasny); border-color: var(--ug-blekit); color: var(--ug-blekit-ciemny); }
+
+.szukaj {
+  margin-left: auto; min-width: 220px; flex: 0 1 280px;
+  font: inherit; font-size: .95rem;
+  padding: .55rem .9rem; border: 1px solid var(--ramka); border-radius: 999px; background: #fff;
+}
+
+.lista-wydarzen { display: grid; gap: 1rem; }
+
+.wydarzenie {
+  display: grid; grid-template-columns: 84px 1fr; gap: 1.1rem;
+  align-items: start;
+}
+.wydarzenie--minione { opacity: .78; }
+.data-blok {
+  text-align: center; border-radius: var(--promien);
+  background: var(--ug-blekit-jasny); color: var(--ug-blekit-ciemny);
+  padding: .6rem .3rem; line-height: 1.1;
+}
+.data-blok__dzien { display: block; font-size: 1.9rem; font-weight: 800; }
+.data-blok__miesiac { display: block; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+.data-blok__rok { display: block; font-size: .75rem; margin-top: .2rem; opacity: .8; }
+
+.wydarzenie__meta {
+  display: flex; flex-wrap: wrap; gap: .3rem 1rem;
+  color: var(--tekst-drugi); font-size: .92rem; margin: .1rem 0 .5rem;
+}
+.wydarzenie__opis { margin: 0 0 .75rem; }
+.wydarzenie__opis p { margin: 0 0 .5rem; }
+.wydarzenie__akcje { display: flex; flex-wrap: wrap; gap: .5rem; }
+.wydarzenie__obrazek { border-radius: var(--promien); margin: .25rem 0 .75rem; max-height: 280px; object-fit: cover; width: 100%; }
+
+.etykieta {
+  display: inline-block; font-size: .75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .04em;
+  padding: .15rem .55rem; border-radius: 999px; margin-bottom: .4rem;
+  background: var(--tlo-drugie); color: var(--tekst-drugi);
+}
+.etykieta--integracja { background: #fff1e0; color: #8a4b00; }
+.etykieta--nauka      { background: #e8eefc; color: #00309c; }
+.etykieta--kultura    { background: #f6e8fb; color: #6b2386; }
+.etykieta--sport      { background: #e3f6ea; color: #0a6634; }
+.etykieta--spotkanie  { background: #eef0f3; color: #3a4252; }
+.etykieta--inne       { background: #eef0f3; color: #3a4252; }
+.etykieta--wazne      { background: #fde8e7; color: var(--blad); }
+
+.pusto {
+  text-align: center; color: var(--tekst-drugi);
+  padding: 2rem 1rem; border: 2px dashed var(--ramka); border-radius: var(--promien);
+}
+
+.komunikat-bledu {
+  background: #fde8e7; color: var(--blad); border: 1px solid #f3b8b4;
+  border-radius: var(--promien); padding: 1rem 1.2rem; margin-bottom: 1rem;
+}
+
+/* ---------- Ogłoszenia ---------- */
+.ogloszenie__data { color: var(--tekst-drugi); font-size: .9rem; margin: 0 0 .35rem; }
+.ogloszenie p:last-child { margin-bottom: 0; }
+
+/* ---------- Zespół ---------- */
+.osoba { display: flex; gap: 1rem; align-items: center; }
+.osoba__awatar {
+  flex: none; width: 56px; height: 56px; border-radius: 50%;
+  background: var(--ug-blekit-jasny); color: var(--ug-blekit-ciemny);
+  display: grid; place-items: center; font-weight: 800; font-size: 1.1rem;
+  overflow: hidden;
+}
+.osoba__awatar img { width: 100%; height: 100%; object-fit: cover; }
+.osoba h3 { margin: 0; font-size: 1.05rem; }
+.osoba p { margin: .1rem 0 0; color: var(--tekst-drugi); font-size: .92rem; }
+
+/* ---------- Linki / dokumenty ---------- */
+.lista-linkow { list-style: none; margin: 0; padding: 0; }
+.lista-linkow li { border-top: 1px solid var(--ramka); }
+.lista-linkow li:first-child { border-top: 0; }
+.lista-linkow a {
+  display: flex; justify-content: space-between; gap: 1rem;
+  padding: .7rem 0; text-decoration: none; color: var(--tekst);
+}
+.lista-linkow a:hover { color: var(--ug-blekit); }
+.lista-linkow a::after { content: "→"; color: var(--ug-blekit); }
+
+/* FAQ */
+details {
+  background: #fff; border: 1px solid var(--ramka); border-radius: var(--promien);
+  padding: .9rem 1.2rem; margin-bottom: .6rem;
+}
+summary { cursor: pointer; font-weight: 600; }
+details[open] summary { margin-bottom: .5rem; }
+
+/* ---------- Stopka ---------- */
+.stopka {
+  background: #0b1530; color: #c9d2e6; font-size: .92rem;
+  padding: 2.25rem 0 1.5rem;
+}
+.stopka a { color: #fff; }
+.stopka__siatka { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.stopka h2 { font-size: 1rem; color: #fff; margin: 0 0 .5rem; }
+.stopka p { margin: 0 0 .35rem; }
+.stopka__dol {
+  border-top: 1px solid rgba(255,255,255,.15); margin-top: 1.75rem; padding-top: 1rem;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem;
+}
+
+/* ---------- Generator (dodaj.html) ---------- */
+.formularz { display: grid; gap: 1rem; }
+.pole { display: grid; gap: .3rem; }
+.pole label { font-weight: 600; }
+.pole small { color: var(--tekst-drugi); }
+.pole input, .pole select, .pole textarea {
+  font: inherit; padding: .6rem .8rem; border: 1px solid #b9c1d0; border-radius: 8px; background: #fff;
+  width: 100%;
+}
+.pole textarea { min-height: 120px; resize: vertical; }
+.pola-obok { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.wymagane { color: var(--blad); }
+.kod {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .88rem;
+  background: #0b1530; color: #e6ecff; border-radius: var(--promien);
+  padding: 1rem 1.2rem; overflow-x: auto; white-space: pre; margin: 0;
+}
+.kroki { padding-left: 1.3rem; }
+.kroki li { margin-bottom: .5rem; }
+code { background: var(--tlo-drugie); padding: .1rem .35rem; border-radius: 4px; font-size: .92em; }
+
+@media (max-width: 600px) {
+  body { font-size: 1rem; }
+  .logo__opis { display: none; }
+  .baner { padding: 1.6rem 1.25rem; }
+  .wydarzenie { grid-template-columns: 64px 1fr; gap: .8rem; }
+  .data-blok__dzien { font-size: 1.5rem; }
+  .szukaj { margin-left: 0; flex: 1 1 100%; }
+  .karta { padding: 1rem 1.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+@media print {
+  .zakladki, .filtry, .stopka, .wydarzenie__akcje, .przeskocz { display: none !important; }
+  .panel[hidden] { display: block !important; }
+  body { background: #fff; }
+}
