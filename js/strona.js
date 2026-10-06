@@ -257,6 +257,12 @@
   function dwa(n) { return String(n).padStart(2, "0"); }
   function icsTekst(s) { return String(s || "").replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/,/g, "\\,").replace(/;/g, "\\;"); }
 
+  function bezPolskich(s) {
+    var mapa = { "ą": "a", "ć": "c", "ę": "e", "ł": "l", "ń": "n", "ó": "o", "ś": "s", "ź": "z", "ż": "z",
+      "Ą": "A", "Ć": "C", "Ę": "E", "Ł": "L", "Ń": "N", "Ó": "O", "Ś": "S", "Ź": "Z", "Ż": "Z" };
+    return String(s).replace(/[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g, function (z) { return mapa[z]; });
+  }
+
   function pobierzIcs(w) {
     var d = w.data;
     var ymd = d.getFullYear() + dwa(d.getMonth() + 1) + dwa(d.getDate());
@@ -286,7 +292,8 @@
     var url = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
     var a = document.createElement("a");
     a.href = url;
-    a.download = w.tytul.replace(/[^\wąćęłńóśźżĄĆĘŁŃÓŚŹŻ -]/g, "").trim().replace(/\s+/g, "-") + ".ics";
+    // Nazwa pliku tylko ze znaków ASCII – z polskimi znakami część przeglądarek zapisuje plik jako „download”.
+    a.download = (bezPolskich(w.tytul).replace(/[^\w -]/g, "").trim().replace(/\s+/g, "-") || "wydarzenie") + ".ics";
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
   }
@@ -309,7 +316,13 @@
       else z.removeAttribute("aria-current");
     });
     var aktywna = zakladki.filter(function (z) { return z.getAttribute("href") === "#" + id; })[0];
-    if (aktywna && aktywna.scrollIntoView) aktywna.scrollIntoView({ block: "nearest", inline: "nearest" });
+    // Na wąskim ekranie przewiń pasek zakładek do aktywnej (bez scrollIntoView, które psuje kolejność Tab).
+    var pasek = document.querySelector(".zakladki__lista");
+    if (aktywna && pasek) {
+      var r = aktywna.getBoundingClientRect(), rp = pasek.getBoundingClientRect();
+      if (r.left < rp.left) pasek.scrollLeft -= rp.left - r.left;
+      else if (r.right > rp.right) pasek.scrollLeft += r.right - rp.right;
+    }
 
     var tytul = { "start": "", "wydarzenia": "Wydarzenia", "ogloszenia": "Ogłoszenia", "o-nas": "O nas", "dla-studentow": "Dla studentów", "kontakt": "Kontakt" }[id];
     document.title = (tytul ? tytul + " – " : "") + "RSS MFI UG";
